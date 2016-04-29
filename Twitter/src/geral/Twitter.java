@@ -19,12 +19,27 @@ public class Twitter {
 	}
 	
 	public void post(Tweet tweet){
+		String user = tweet.getUser();
+		if(Tweets.containsKey(user)){
+			Tweets.get(user).addFirst(tweet);
+		}else{
+			LinkedList<Tweet> lista = new LinkedList<Tweet>();
+			lista.add(tweet);
+			Tweets.put(user, lista);
+		}
+		
 		ActualizaTopTweets(tweet);
 		ActualizaTweetsPorData(tweet.getData());
 		ActualizaCidades(tweet.getGeoLoc());
 		
 	}
 	
+	public LinkedList<Tweet> getTweetsUserOrderByDate(String user){
+		Collections.sort(Tweets.get(user), new DateComp());
+		return Tweets.get(user);
+		
+	}
+
 	
 	private void ActualizaCidades(Ponto geoLoc) {
 		for (Area area : cidades) {
