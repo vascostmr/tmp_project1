@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.Date;
 
 public class Tweet {
+	private String idTweet;
 	private String user;
 	private Date data;
 	private String conteudo;
@@ -61,6 +62,14 @@ public class Tweet {
 	}
 	public void setRetweet(Tweet retweet) {
 		this.retweet = retweet;
+	}
+
+	public String getIdTweet() {
+		return idTweet;
+	}
+
+	public void setIdTweet(String idTweet) {
+		this.idTweet = idTweet;
 	}	
 	
 }
