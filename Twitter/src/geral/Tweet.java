@@ -1,6 +1,7 @@
 package geral;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
 public class Tweet {
@@ -60,10 +61,18 @@ public class Tweet {
 	}
 	public void setRetweet(Tweet retweet) {
 		this.retweet = retweet;
-	}
+	}	
 	
-	
-	
-	
-	
+}
+
+
+class DateComp implements Comparator<Tweet>{
+	@Override
+    public int compare(Tweet e1, Tweet e2) {
+        if(e1.getData().after(e2.getData())){
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 }
