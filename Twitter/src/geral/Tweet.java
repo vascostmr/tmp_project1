@@ -62,6 +62,14 @@ public class Tweet {
 	}
 	public void setRetweet(Tweet retweet) {
 		this.retweet = retweet;
+	}
+
+	public String getIdTweet() {
+		return idTweet;
+	}
+
+	public void setIdTweet(String idTweet) {
+		this.idTweet = idTweet;
 	}	
 	
 }
