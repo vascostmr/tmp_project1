@@ -1,5 +1,6 @@
 package geral;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -17,12 +18,27 @@ public class Twitter {
 	}
 	
 	public void post(Tweet tweet){
+		String user = tweet.getUser();
+		if(Tweets.containsKey(user)){
+			Tweets.get(user).addFirst(tweet);
+		}else{
+			LinkedList<Tweet> lista = new LinkedList<Tweet>();
+			lista.add(tweet);
+			Tweets.put(user, lista);
+		}
+		
 		ActualizaTopTweets(tweet);
 		ActualizaTweetsPorData(tweet.getData());
 		ActualizaCidades(tweet.getGeoLoc());
 		
 	}
 	
+	public LinkedList<Tweet> getTweetsUserOrderByDate(String user){
+		Collections.sort(Tweets.get(user), new DateComp());
+		return Tweets.get(user);
+		
+	}
+
 	
 	private void ActualizaCidades(Ponto geoLoc) {
 		// TODO Auto-generated method stub
