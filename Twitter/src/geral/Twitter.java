@@ -1,5 +1,7 @@
 package geral;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -25,8 +27,17 @@ public class Twitter {
 	
 	
 	private void ActualizaCidades(Ponto geoLoc) {
-		// TODO Auto-generated method stub
+		for (Area area : cidades) {
+			if (pontoDaZona(area, geoLoc)){
+				area.setCountTweets(area.getCountTweets()+1);
+			}
+		};
 		
+	}
+
+	private boolean pontoDaZona(Area area, Ponto geoLoc) {
+		
+		return false;
 	}
 
 	private void ActualizaTweetsPorData(Date data) {
@@ -51,8 +62,22 @@ public class Twitter {
 		
 	}
 	
-	public void getTopCidades(){
+	public List<String> getTopCidades(int numeroDeTop){
 		
+		List<String> lista = new ArrayList<>();
+		
+		if (numeroDeTop>0 && cidades.size()>=numeroDeTop){
+			Collections.sort(cidades, new CompArea());
+			for (Area a : cidades) {
+				lista.add(a.getNome());
+				numeroDeTop--;
+				if (numeroDeTop == 0){
+					break;
+				}
+			}
+		}
+		
+		return lista;
 	}
 	
 	

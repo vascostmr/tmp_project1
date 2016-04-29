@@ -1,12 +1,18 @@
 package geral;
 
+import java.util.Comparator;
 import java.util.List;
 
-public class Area {
+public class Area{
 	public List<Ponto> listaPontos;
 	public String nome;
 	public int countTweets;
 	
+	/*
+	 * TODO - Garantir :
+	 * 	1 - temos sempre uma ListaPontos com mais de 2 pontos 
+	 *  2 - sempre que um ponto nao existir nas areas possiveis deve existir uma area generica que o apanhe
+	 */
 	
 	public Area(List<Ponto> listaPontos, String nome, int countTweets){
 		this.listaPontos = listaPontos;
@@ -48,6 +54,16 @@ public class Area {
 	}
 	public void setCountTweets(int countTweets) {
 		this.countTweets = countTweets;
+	}
+}
+
+class CompArea implements Comparator<Area>{
+	@Override
+	public int compare(Area o1, Area o2) {
+		if (o1.countTweets < o2.countTweets)
+			return -1;
+		else
+			return 1;
 	}
 	
 }
