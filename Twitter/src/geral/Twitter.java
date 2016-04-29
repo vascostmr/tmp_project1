@@ -37,7 +37,6 @@ public class Twitter {
 	public LinkedList<Tweet> getTweetsUserOrderByDate(String user){
 		Collections.sort(Tweets.get(user), new DateComp());
 		return Tweets.get(user);
-		
 	}
 
 	
